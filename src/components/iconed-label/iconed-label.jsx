@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './iconed-label.module.css';
 
-export const IconedLabel = ({icon, text}) => {
-  return <div className={styles.root}>
+export const IconedLabel = ({icon, text, ...rest}) => {
+  return <div className={styles.root} {...rest}>
     <div className={styles.icon}>
       {icon}
     </div>
