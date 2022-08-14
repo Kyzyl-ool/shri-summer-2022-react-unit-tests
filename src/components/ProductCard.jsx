@@ -31,43 +31,43 @@ export const ProductCard = ({
         {isFavorite ? <FillHeartIcon/> : <EmptyFavoriteIcon/>}
       </Icon>
     </div>
-    <img src={imageUrl} alt={title} className={styles.image}/>
-    <div className={styles.info}>
-
-
-      <div className={styles.title}>
-        {title}
-      </div>
-      <div className={classnames(styles.priceContainer, {})}>
-        <div className={classnames(styles.priceCurrent,
-          {[styles.priceDiscount]: oldPrice && currentPrice})}>
-          {digitSplitter(currentPrice)}&nbsp;&#x20bd;
+    <div>
+      <img src={imageUrl} alt={title} className={styles.image}/>
+      <div className={styles.info}>
+        <div className={styles.title}>
+          {title}
         </div>
-        {oldPrice && <div className={classnames(styles.priceOld, {
-          [styles.priceCrossedOut]: oldPrice && currentPrice
-        })}>
-          {digitSplitter(oldPrice)}&nbsp;&#x20bd;
-        </div>}
-      </div>
-      <div className={styles.details}>
-        <IconedLabel
-          icon={<Icon>
-            <FlowersCountIcon/>
-          </Icon>}
-          text={<>{digitSplitter(flowersCount)}&nbsp;шт.</>}
-        />
-        <IconedLabel
-          icon={<Icon>
-            <BouquetHeightIcon/>
-          </Icon>}
-          text={<>{digitSplitter(bouquetHeight)}&nbsp;см</>}
-        />
-        <IconedLabel
-          icon={<Icon>
-            <BouquetWidthIcon/>
-          </Icon>}
-          text={<>{digitSplitter(bouquetWidth)}&nbsp;см</>}
-        />
+        <div className={classnames(styles.priceContainer, {})}>
+          <div className={classnames(styles.priceCurrent,
+            {[styles.priceDiscount]: oldPrice && currentPrice})}>
+            {digitSplitter(currentPrice)}&nbsp;&#x20bd;
+          </div>
+          {oldPrice && <div className={classnames(styles.priceOld, {
+            [styles.priceCrossedOut]: oldPrice && currentPrice
+          })}>
+            {digitSplitter(oldPrice)}&nbsp;&#x20bd;
+          </div>}
+        </div>
+        <div className={styles.details}>
+          <IconedLabel
+            icon={<Icon>
+              <FlowersCountIcon/>
+            </Icon>}
+            text={<>{digitSplitter(flowersCount)}&nbsp;шт.</>}
+          />
+          <IconedLabel
+            icon={<Icon>
+              <BouquetHeightIcon/>
+            </Icon>}
+            text={<>{digitSplitter(bouquetHeight)}&nbsp;см</>}
+          />
+          <IconedLabel
+            icon={<Icon>
+              <BouquetWidthIcon/>
+            </Icon>}
+            text={<>{digitSplitter(bouquetWidth)}&nbsp;см</>}
+          />
+        </div>
       </div>
     </div>
     <div className={styles.actions}>
