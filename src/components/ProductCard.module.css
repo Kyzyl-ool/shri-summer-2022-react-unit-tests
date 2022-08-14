@@ -1,0 +1,78 @@
+.root {
+    border-radius: 8px;
+    padding: 16px;
+    width: 307px;
+    box-sizing: border-box;
+    position: relative;
+    background-color: #FFF;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.image {
+    height: 400px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.title {
+    color: #434851;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.priceContainer {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 20px;
+    display: flex;
+    gap: 8px;
+}
+
+.priceCurrent {
+
+}
+
+.priceOld {
+
+}
+
+.priceDiscount {
+    color: #F20D0D;
+}
+
+.priceCrossedOut {
+    text-decoration-line: line-through;
+}
+
+.details {
+
+}
+
+.badges {
+    position: absolute;
+    top: 32px;
+    left: 32px;
+    display: flex;
+    gap: 4px;
+}
+
+.actions {
+    display: flex;
+    gap: 12px;
+    text-wrap: none;
+    white-space: nowrap;
+}
+
+.favourite {
+    position: absolute;
+    top: 32px;
+    right: 32px;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
