@@ -5,6 +5,7 @@ import {BouquetHeightIcon, BouquetWidthIcon, EmptyFavoriteIcon, FillHeartIcon, F
 import {Badge} from "./badge/badge";
 import {Button} from "./button/button";
 import classnames from "classnames";
+import {digitSplitter} from "../utiils/digitSplitter";
 
 export const ProductCard = ({
                               bouquetHeight,
@@ -40,12 +41,12 @@ export const ProductCard = ({
       <div className={classnames(styles.priceContainer, {})}>
         <div className={classnames(styles.priceCurrent,
           {[styles.priceDiscount]: oldPrice && currentPrice})}>
-          {currentPrice}&nbsp;&#x20bd;
+          {digitSplitter(currentPrice)}&nbsp;&#x20bd;
         </div>
         {oldPrice && <div className={classnames(styles.priceOld, {
           [styles.priceCrossedOut]: oldPrice && currentPrice
         })}>
-          {oldPrice}&nbsp;&#x20bd;
+          {digitSplitter(oldPrice)}&nbsp;&#x20bd;
         </div>}
       </div>
       <div className={styles.details}>
@@ -53,19 +54,19 @@ export const ProductCard = ({
           icon={<Icon>
             <FlowersCountIcon/>
           </Icon>}
-          text={flowersCount}
+          text={<>{digitSplitter(flowersCount)}&nbsp;шт.</>}
         />
         <IconedLabel
           icon={<Icon>
             <BouquetHeightIcon/>
           </Icon>}
-          text={bouquetHeight}
+          text={<>{digitSplitter(bouquetHeight)}&nbsp;см</>}
         />
         <IconedLabel
           icon={<Icon>
             <BouquetWidthIcon/>
           </Icon>}
-          text={bouquetWidth}
+          text={<>{digitSplitter(bouquetWidth)}&nbsp;см</>}
         />
       </div>
     </div>

@@ -47,7 +47,9 @@
 }
 
 .details {
-
+    display: flex;
+    gap: 24px;
+    color: #72757C;
 }
 
 .badges {
