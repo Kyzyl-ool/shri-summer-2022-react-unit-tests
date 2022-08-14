@@ -32,7 +32,7 @@ describe('Компонент «Карточка товара»', () => {
       {...fullProps}
     />);
 
-    expect(screen.getByTestId(`${TestIds.PRODUCT_CARD}-${fullProps.id}`)).toBeInTheDocument();
+    expect(screen.getByTestId(TestIds.PRODUCT_CARD)).toBeInTheDocument();
     expect(screen.getByTestId(TestIds.BOUQUET_HEIGHT)).toHaveTextContent(`${fullProps.bouquetHeight} см`);
     expect(screen.getByTestId(TestIds.BOUQUET_WIDTH)).toHaveTextContent(`${fullProps.bouquetWidth} см`);
     expect(screen.getByTestId(TestIds.PRICE_OLD)).toHaveTextContent(`${digitSplitter(fullProps.oldPrice, 3, ' ')} ₽`);
