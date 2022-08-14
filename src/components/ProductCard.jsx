@@ -6,7 +6,6 @@ import {Badge} from "./badge/badge";
 import {Button} from "./button/button";
 import classnames from "classnames";
 import {digitSplitter} from "../utiils/digitSplitter";
-import DOMPurify from "dompurify";
 
 export const TestIds = {
   PRODUCT_CARD: 'product-card',
@@ -40,7 +39,7 @@ export const ProductCard = ({
                             }) => {
   const disabled = !(flowersCount > 0);
 
-  return <div data-testid={`${TestIds.PRODUCT_CARD}-${DOMPurify.sanitize(id)}`} className={styles.root}>
+  return <div data-testid={TestIds.PRODUCT_CARD} className={styles.root}>
     <div className={styles.badges}>
       {isHit && <Badge type={'hit'} data-testid={TestIds.BADGE_HIT}>ХИТ</Badge>}
       {isSale && <Badge type={'sale'} data-testid={TestIds.BADGE_SALE}>СКИДКА</Badge>}
