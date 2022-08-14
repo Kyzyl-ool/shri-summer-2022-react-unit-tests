@@ -1,5 +1,8 @@
+import {render} from "@testing-library/react";
+import {ProductCard} from "./ProductCard";
+
 describe('Компонент «Карточка товара»', () => {
-    it('Simple empty test', () => {
-        expect(true).toBeTruthy();
-    });
+    render(<ProductCard
+
+    />)
 });

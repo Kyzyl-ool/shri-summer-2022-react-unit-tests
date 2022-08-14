@@ -20,6 +20,7 @@ export const ProductCard = ({
                               oldPrice,
                               title,
                             }) => {
+  const disabled = !(flowersCount > 0);
 
   return <div data-testid="product-card" className={styles.root}>
     <div className={styles.badges}>
@@ -49,32 +50,32 @@ export const ProductCard = ({
           </div>}
         </div>
         <div className={styles.details}>
-          <IconedLabel
+          {flowersCount !== undefined && <IconedLabel
             icon={<Icon>
               <FlowersCountIcon/>
             </Icon>}
             text={<>{digitSplitter(flowersCount)}&nbsp;шт.</>}
-          />
-          <IconedLabel
+          />}
+          {bouquetHeight !== undefined && <IconedLabel
             icon={<Icon>
               <BouquetHeightIcon/>
             </Icon>}
             text={<>{digitSplitter(bouquetHeight)}&nbsp;см</>}
-          />
-          <IconedLabel
+          />}
+          {bouquetWidth !== undefined && <IconedLabel
             icon={<Icon>
               <BouquetWidthIcon/>
             </Icon>}
             text={<>{digitSplitter(bouquetWidth)}&nbsp;см</>}
-          />
+          />}
         </div>
       </div>
     </div>
     <div className={styles.actions}>
-      <Button>
+      <Button disabled={disabled}>
         В корзину
       </Button>
-      <Button type={'secondary'}>
+      <Button type={'secondary'} disabled={disabled}>
         Купить сразу
       </Button>
     </div>

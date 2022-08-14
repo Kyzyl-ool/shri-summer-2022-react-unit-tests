@@ -2,8 +2,10 @@ import React from 'react';
 import styles from './button.module.css';
 import classnames from "classnames";
 
-export const Button = ({children, type = 'primary'}) => {
+export const Button = ({children, type = 'primary', disabled}) => {
   return (
-    <button className={classnames(styles.root, styles[type])}>{children}</button>
+    <button className={classnames(styles.root, styles[type], {
+      [styles.disabled]: disabled
+    })}>{children}</button>
   );
 };

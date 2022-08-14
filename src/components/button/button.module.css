@@ -5,6 +5,7 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
+    cursor: pointer;
 }
 
 .primary {
@@ -13,4 +14,9 @@
 
 .secondary {
     background-color: #F6F6F6;
+}
+
+.disabled {
+    background-color: #F5F5F5;
+    cursor: not-allowed;
 }
