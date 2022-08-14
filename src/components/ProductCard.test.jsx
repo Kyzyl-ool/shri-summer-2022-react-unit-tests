@@ -1,5 +1,6 @@
-import {render, screen} from "@testing-library/react";
+import {getDefaultNormalizer, render, screen} from "@testing-library/react";
 import {ProductCard, TestIds} from "./ProductCard";
+import {digitSplitter} from "../utiils/digitSplitter";
 
 describe('Компонент «Карточка товара»', () => {
   const fullProps = {
@@ -34,11 +35,9 @@ describe('Компонент «Карточка товара»', () => {
     expect(screen.getByTestId(`${TestIds.PRODUCT_CARD}-${fullProps.id}`)).toBeInTheDocument();
     expect(screen.getByTestId(TestIds.BOUQUET_HEIGHT)).toHaveTextContent(`${fullProps.bouquetHeight} см`);
     expect(screen.getByTestId(TestIds.BOUQUET_WIDTH)).toHaveTextContent(`${fullProps.bouquetWidth} см`);
-    expect(screen.getByTestId(TestIds.PRICE_OLD)).toHaveTextContent(`${fullProps.oldPrice} ₽`);
-    expect(screen.getByTestId(TestIds.PRICE_OLD)).toHaveStyle('text-decoration-line: line-through;');
-    expect(screen.getByTestId(TestIds.PRICE_CURRENT)).toHaveTextContent(`${fullProps.currentPrice} ₽`);
-    expect(screen.getByTestId(TestIds.PRICE_CURRENT)).toHaveStyle('color: #F20D0D;');
-    expect(screen.getByTestId(TestIds.IMAGE)).toContainElement('img');
+    expect(screen.getByTestId(TestIds.PRICE_OLD)).toHaveTextContent(`${digitSplitter(fullProps.oldPrice, 3, ' ')} ₽`);
+    expect(screen.getByTestId(TestIds.PRICE_CURRENT)).toHaveTextContent(`${digitSplitter(fullProps.currentPrice, 3, ' ')} ₽`);
+    expect(screen.getByTestId(TestIds.IMAGE)).toContainHTML('img');
     expect(screen.getByTestId(TestIds.FAVOURITE_FILLED)).toBeInTheDocument();
     expect(screen.queryByTestId(TestIds.BADGE_HIT)).not.toBeInTheDocument();
     expect(screen.getByTestId(TestIds.BADGE_SALE)).toBeInTheDocument();
