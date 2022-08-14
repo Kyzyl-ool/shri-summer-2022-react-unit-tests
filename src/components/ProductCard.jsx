@@ -9,6 +9,7 @@ import {digitSplitter} from "../utiils/digitSplitter";
 import DOMPurify from "dompurify";
 
 export const TestIds = {
+  PRODUCT_CARD: 'product-card',
   BADGE_HIT: 'badge-hit',
   BADGE_SALE: 'badge-sale',
   FAVOURITE_FILLED: 'favourite-filled',
@@ -39,7 +40,7 @@ export const ProductCard = ({
                             }) => {
   const disabled = !(flowersCount > 0);
 
-  return <div data-testid={`product-card-${DOMPurify.sanitize(id)}`} className={styles.root}>
+  return <div data-testid={`${TestIds.PRODUCT_CARD}-${DOMPurify.sanitize(id)}`} className={styles.root}>
     <div className={styles.badges}>
       {isHit && <Badge type={'hit'} data-testid={TestIds.BADGE_HIT}>ХИТ</Badge>}
       {isSale && <Badge type={'sale'} data-testid={TestIds.BADGE_SALE}>СКИДКА</Badge>}

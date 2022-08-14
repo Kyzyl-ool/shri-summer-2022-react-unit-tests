@@ -6,6 +6,6 @@ export const Button = ({children, type = 'primary', disabled, ...rest}) => {
   return (
     <button className={classnames(styles.root, styles[type], {
       [styles.disabled]: disabled
-    })} {...rest}>{children}</button>
+    })} disabled={disabled} {...rest}>{children}</button>
   );
 };

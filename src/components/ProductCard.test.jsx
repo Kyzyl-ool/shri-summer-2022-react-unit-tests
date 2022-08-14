@@ -1,25 +1,68 @@
-import {render, waitFor, screen} from "@testing-library/react";
-import {ProductCard} from "./ProductCard";
+import {render, screen} from "@testing-library/react";
+import {ProductCard, TestIds} from "./ProductCard";
 
 describe('Компонент «Карточка товара»', () => {
-  test('Сама карточка рендерится при валидных пропсах', async () => {
+  const fullProps = {
+    bouquetHeight: 96,
+    bouquetWidth: 50,
+    currentPrice: "74798",
+    flowersCount: 43,
+    id: "3cb712d2-31ec-431e-ab05-20a284e1c339",
+    imageUrl: "https://loremflickr.com/400/400/nature?94638",
+    isFavorite: true,
+    isHit: false,
+    isSale: true,
+    oldPrice: "60938",
+    title: "Потрясающий Натуральный Кулон",
+  };
+
+  const noAmountAndSizedProps = {
+    currentPrice: "74798",
+    id: "3cb712d2-31ec-431e-ab05-20a284e1c339",
+    imageUrl: "https://loremflickr.com/400/400/nature?94638",
+    isFavorite: true,
+    isHit: false,
+    isSale: true,
+    oldPrice: "60938",
+    title: "Потрясающий Натуральный Кулон",
+  }
+  test('Сама карточка рендерится при полных валидных пропсах', () => {
     render(<ProductCard
-      bouquetHeight={96}
-      bouquetWidth={50}
-      currentPrice={"74798"}
-      flowersCount={43}
-      id={"3cb712d2-31ec-431e-ab05-20a284e1c339"}
-      imageUrl={"https://loremflickr.com/400/400/nature?94638"}
-      isFavorite={true}
-      isHit={false}
-      isSale={true}
-      oldPrice={"60938"}
-      title={"Потрясающий Натуральный Кулон"}
+      {...fullProps}
     />);
 
-    expect(screen.getByTestId('product-card')).toBeInTheDocument();
-    expect(screen.getByTestId(''))
+    expect(screen.getByTestId(`${TestIds.PRODUCT_CARD}-${fullProps.id}`)).toBeInTheDocument();
+    expect(screen.getByTestId(TestIds.BOUQUET_HEIGHT)).toHaveTextContent(`${fullProps.bouquetHeight} см`);
+    expect(screen.getByTestId(TestIds.BOUQUET_WIDTH)).toHaveTextContent(`${fullProps.bouquetWidth} см`);
+    expect(screen.getByTestId(TestIds.PRICE_OLD)).toHaveTextContent(`${fullProps.oldPrice} ₽`);
+    expect(screen.getByTestId(TestIds.PRICE_OLD)).toHaveStyle('text-decoration-line: line-through;');
+    expect(screen.getByTestId(TestIds.PRICE_CURRENT)).toHaveTextContent(`${fullProps.currentPrice} ₽`);
+    expect(screen.getByTestId(TestIds.PRICE_CURRENT)).toHaveStyle('color: #F20D0D;');
+    expect(screen.getByTestId(TestIds.IMAGE)).toContainElement('img');
+    expect(screen.getByTestId(TestIds.FAVOURITE_FILLED)).toBeInTheDocument();
+    expect(screen.queryByTestId(TestIds.BADGE_HIT)).not.toBeInTheDocument();
+    expect(screen.getByTestId(TestIds.BADGE_SALE)).toBeInTheDocument();
+    expect(screen.getByTestId(TestIds.TITLE)).toHaveTextContent(fullProps.title);
   });
 
 
+  test('Если нет ни кол-ва, ни размеров, то не должно быть строки про эту информацию',
+    async () => {
+      render(<ProductCard{...noAmountAndSizedProps}/>);
+
+      expect(screen.queryByTestId(TestIds.BOUQUET_HEIGHT)).not.toBeInTheDocument();
+      expect(screen.queryByTestId(TestIds.BOUQUET_WIDTH)).not.toBeInTheDocument();
+      expect(screen.queryByTestId(TestIds.FLOWERS_COUNT)).not.toBeInTheDocument();
+    }
+  );
+
+  test('Если кол-во цветов 0, то кнопки покупки должны быть disabled', () => {
+    render(<ProductCard{...fullProps} flowersCount={0}/>);
+
+    expect(screen.getByTestId(TestIds.BOUQUET_HEIGHT)).toBeInTheDocument();
+    expect(screen.getByTestId(TestIds.BOUQUET_WIDTH)).toBeInTheDocument();
+    expect(screen.getByTestId(TestIds.FLOWERS_COUNT)).toBeInTheDocument();
+    expect(screen.getByTestId(TestIds.BUY_NOW)).toBeDisabled();
+    expect(screen.getByTestId(TestIds.ADD_TO_CART)).toBeDisabled();
+  });
 });
